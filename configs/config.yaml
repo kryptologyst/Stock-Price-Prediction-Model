@@ -1,0 +1,84 @@
+# @package _global_
+defaults:
+  - _self_
+  - data: yahoo_finance
+  - features: technical_indicators
+  - models: lstm_baseline
+  - backtest: vectorbt_config
+
+# Experiment configuration
+experiment:
+  name: "stock_price_prediction"
+  tags: ["research", "education", "price_forecasting"]
+  seed: 42
+
+# Data configuration
+data:
+  symbols: ["AAPL", "MSFT", "GOOGL", "TSLA"]
+  start_date: "2015-01-01"
+  end_date: "2023-12-31"
+  train_end_date: "2021-12-31"
+  val_end_date: "2022-12-31"
+  test_start_date: "2023-01-01"
+
+# Feature engineering
+features:
+  lookback_window: 60
+  technical_indicators:
+    - "sma_20"
+    - "sma_50"
+    - "ema_12"
+    - "ema_26"
+    - "rsi_14"
+    - "macd"
+    - "bollinger_bands"
+    - "atr_14"
+    - "volume_sma_20"
+
+# Model configuration
+models:
+  lstm:
+    units: [50, 50]
+    dropout: 0.2
+    epochs: 50
+    batch_size: 32
+    learning_rate: 0.001
+    patience: 10
+
+  xgboost:
+    n_estimators: 1000
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    early_stopping_rounds: 50
+
+# Backtesting configuration
+backtest:
+  initial_capital: 100000
+  transaction_cost: 0.001  # 0.1% per trade
+  slippage: 0.0005  # 0.05% slippage
+  benchmark: "SPY"
+  rebalance_frequency: "daily"
+
+# Evaluation metrics
+evaluation:
+  ml_metrics:
+    - "rmse"
+    - "mae"
+    - "mape"
+    - "r2"
+  trading_metrics:
+    - "sharpe_ratio"
+    - "sortino_ratio"
+    - "max_drawdown"
+    - "calmar_ratio"
+    - "hit_rate"
+    - "profit_factor"
+
+# Paths
+paths:
+  data_dir: "data"
+  models_dir: "models"
+  assets_dir: "assets"
+  logs_dir: "logs"

@@ -1,0 +1,7 @@
+# @package data
+_target_: src.data.yahoo_data.YahooDataLoader
+
+symbols: ["AAPL", "MSFT", "GOOGL", "TSLA"]
+start_date: "2015-01-01"
+end_date: "2023-12-31"
+interval: "1d"

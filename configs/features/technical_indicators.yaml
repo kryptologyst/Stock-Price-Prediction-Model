@@ -1,0 +1,14 @@
+# @package features
+_target_: src.features.technical_features.TechnicalFeatureEngineer
+
+lookback_window: 60
+indicators:
+  - "sma_20"
+  - "sma_50"
+  - "ema_12"
+  - "ema_26"
+  - "rsi_14"
+  - "macd"
+  - "bollinger_bands"
+  - "atr_14"
+  - "volume_sma_20"
